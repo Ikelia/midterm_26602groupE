@@ -39,7 +39,6 @@ public class Location {
      */
     @ManyToOne
     @JoinColumn(name = "village_id", nullable = false)
-    @JsonIgnore
     private Village village;
     
     /**
