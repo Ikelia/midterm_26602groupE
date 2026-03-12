@@ -35,6 +35,7 @@ public class Village {
      */
     @ManyToOne
     @JoinColumn(name = "cell_id", nullable = false)
+    @JsonIgnore
     private Cell cell;
     
     /**

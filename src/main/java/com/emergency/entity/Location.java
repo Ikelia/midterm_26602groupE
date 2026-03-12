@@ -1,5 +1,6 @@
 package com.emergency.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,6 +39,7 @@ public class Location {
      */
     @ManyToOne
     @JoinColumn(name = "village_id", nullable = false)
+    @JsonIgnore
     private Village village;
     
     /**

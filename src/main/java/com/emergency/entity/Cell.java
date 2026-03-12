@@ -35,6 +35,7 @@ public class Cell {
      */
     @ManyToOne
     @JoinColumn(name = "sector_id", nullable = false)
+    @JsonIgnore
     private Sector sector;
     
     /**

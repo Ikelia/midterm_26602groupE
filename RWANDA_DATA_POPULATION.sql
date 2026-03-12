@@ -29,7 +29,7 @@ INSERT INTO sector (name, code, district_id) VALUES
 INSERT INTO cell (name, code, sector_id) VALUES 
 ('Rukiri I', 'RUK1', 1),
 ('Rukiri II', 'RUK2', 1),
-('Nyabisindu', 'NYAB', 1);
+('Nyabisindu', 'NYBS', 1);
 
 -- 7. CELLS under Kacyiru Sector (Gasabo)
 INSERT INTO cell (name, code, sector_id) VALUES 
@@ -48,8 +48,8 @@ INSERT INTO cell (name, code, sector_id) VALUES
 
 -- 10. CELLS under Muhima Sector (Nyarugenge)
 INSERT INTO cell (name, code, sector_id) VALUES 
-('Nyabugogo', 'NYAB', 5),
-('Kabasengerezi', 'KAB', 5);
+('Nyabugogo', 'NYBU', 5),
+('Kabasengerezi', 'KABS', 5);
 
 -- 11. CELLS under Nyamirambo Sector (Nyarugenge)
 INSERT INTO cell (name, code, sector_id) VALUES 
@@ -69,8 +69,8 @@ INSERT INTO village (name, code, cell_id) VALUES
 
 -- 14. VILLAGES under Nyabisindu Cell
 INSERT INTO village (name, code, cell_id) VALUES 
-('Village A', 'NYAB-VA', 3),
-('Village B', 'NYAB-VB', 3);
+('Village A', 'NYBS-VA', 3),
+('Village B', 'NYBS-VB', 3);
 
 -- 15. VILLAGES under Kamatamu Cell
 INSERT INTO village (name, code, cell_id) VALUES 
@@ -104,13 +104,13 @@ INSERT INTO village (name, code, cell_id) VALUES
 
 -- 21. VILLAGES under Nyabugogo Cell
 INSERT INTO village (name, code, cell_id) VALUES 
-('Village A', 'NYAB-VA', 10),
-('Village B', 'NYAB-VB', 10);
+('Village A', 'NYBU-VA', 10),
+('Village B', 'NYBU-VB', 10);
 
 -- 22. VILLAGES under Kabasengerezi Cell
 INSERT INTO village (name, code, cell_id) VALUES 
-('Village A', 'KAB-VA', 11),
-('Village B', 'KAB-VB', 11);
+('Village A', 'KABS-VA', 11),
+('Village B', 'KABS-VB', 11);
 
 -- 23. VILLAGES under Cyivugiza Cell
 INSERT INTO village (name, code, cell_id) VALUES 

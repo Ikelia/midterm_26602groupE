@@ -35,6 +35,7 @@ public class District {
      */
     @ManyToOne
     @JoinColumn(name = "province_id", nullable = false)
+    @JsonIgnore
     private Province province;
     
     /**
