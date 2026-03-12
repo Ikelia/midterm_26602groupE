@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * User Entity
  * Represents users in the emergency system
- * MANY-TO-ONE relationship with Province
+ * MANY-TO-ONE relationship with Village (NOT Province directly!)
  * ONE-TO-MANY relationship with Incident
  */
 @Entity
@@ -32,12 +32,14 @@ public class User {
     private String email;
     
     /**
-     * MANY-TO-ONE: Many Users belong to One Province
-     * @JoinColumn creates foreign key column "province_id" in users table
+     * MANY-TO-ONE: Many Users belong to One Village
+     * User is linked to Village, which automatically connects to:
+     * Village → Cell → Sector → District → Province
+     * This allows retrieving users by any administrative level
      */
     @ManyToOne
-    @JoinColumn(name = "province_id", nullable = false)
-    private Province province;
+    @JoinColumn(name = "village_id", nullable = false)
+    private Village village;
     
     /**
      * ONE-TO-MANY: One User can report many Incidents

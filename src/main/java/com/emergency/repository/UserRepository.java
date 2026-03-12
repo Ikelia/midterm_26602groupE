@@ -4,6 +4,8 @@ import com.emergency.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,28 +15,30 @@ public interface UserRepository extends JpaRepository<User, Long> {
     
     /**
      * existsByEmail() - Check if user exists by email
-     * Spring Data JPA automatically generates the query:
-     * SELECT COUNT(*) > 0 FROM users WHERE email = ?
      */
     boolean existsByEmail(String email);
     
     /**
-     * Retrieve all users from a given province using province NAME
-     * Spring Data JPA generates: 
-     * SELECT * FROM users u JOIN province p ON u.province_id = p.id WHERE p.name = ?
+     * Retrieve all users from a given village
      */
-    List<User> findByProvinceName(String provinceName);
+    List<User> findByVillageId(Long villageId);
+    
+    /**
+     * Retrieve all users from a given province using province NAME
+     * Traverses: User → Village → Cell → Sector → District → Province
+     */
+    @Query("SELECT u FROM User u WHERE u.village.cell.sector.district.province.name = :provinceName")
+    List<User> findByProvinceName(@Param("provinceName") String provinceName);
     
     /**
      * Retrieve all users from a given province using province CODE
-     * Spring Data JPA generates:
-     * SELECT * FROM users u JOIN province p ON u.province_id = p.id WHERE p.code = ?
+     * Traverses: User → Village → Cell → Sector → District → Province
      */
-    List<User> findByProvinceCode(String provinceCode);
+    @Query("SELECT u FROM User u WHERE u.village.cell.sector.district.province.code = :provinceCode")
+    List<User> findByProvinceCode(@Param("provinceCode") String provinceCode);
     
     /**
      * Pagination and Sorting support
-     * Returns a Page object containing users with pagination metadata
      */
     Page<User> findAll(Pageable pageable);
 }

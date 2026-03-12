@@ -31,15 +31,6 @@ public class Province {
     private String code;
     
     /**
-     * ONE-TO-MANY: One Province can have many Users
-     * mappedBy = "province" indicates that User entity owns the relationship
-     * The foreign key (province_id) will be in the User table
-     */
-    @OneToMany(mappedBy = "province")
-    @JsonIgnore
-    private List<User> users;
-    
-    /**
      * ONE-TO-MANY: One Province can have many Districts
      */
     @OneToMany(mappedBy = "province")

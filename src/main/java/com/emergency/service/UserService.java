@@ -88,8 +88,8 @@ public class UserService {
         
         user.setName(userDetails.getName());
         user.setEmail(userDetails.getEmail());
-        if (userDetails.getProvince() != null) {
-            user.setProvince(userDetails.getProvince());
+        if (userDetails.getVillage() != null) {
+            user.setVillage(userDetails.getVillage());
         }
         
         return userRepository.save(user);

@@ -43,4 +43,11 @@ public class Village {
     @OneToMany(mappedBy = "village", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Location> locations;
+    
+    /**
+     * ONE-TO-MANY: One Village has Many Users
+     */
+    @OneToMany(mappedBy = "village", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<User> users;
 }
