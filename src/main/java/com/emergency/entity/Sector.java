@@ -1,6 +1,7 @@
 package com.emergency.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,7 +36,7 @@ public class Sector {
      */
     @ManyToOne
     @JoinColumn(name = "district_id", nullable = false)
-    @JsonIgnore
+    @JsonIgnoreProperties({"sectors", "province"})
     private District district;
     
     /**

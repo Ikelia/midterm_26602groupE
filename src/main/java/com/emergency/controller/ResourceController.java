@@ -3,6 +3,10 @@ package com.emergency.controller;
 import com.emergency.entity.Resource;
 import com.emergency.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +33,19 @@ public class ResourceController {
     @GetMapping("/{id}")
     public ResponseEntity<Resource> getResourceById(@PathVariable Long id) {
         return ResponseEntity.ok(resourceService.getResourceById(id));
+    }
+    
+    /**
+     * Get paginated and sorted resources
+     * Example: /api/resources/paginated?page=0&size=5&sortBy=name
+     */
+    @GetMapping("/paginated")
+    public ResponseEntity<Page<Resource>> getPaginatedResources(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sortBy) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+        return ResponseEntity.ok(resourceService.getPaginatedResources(pageable));
     }
     
     /**

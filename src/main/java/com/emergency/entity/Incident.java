@@ -1,5 +1,6 @@
 package com.emergency.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,6 +41,7 @@ public class Incident {
      */
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnoreProperties({"incidents", "village"})
     private User user;
     
     /**
@@ -49,6 +51,7 @@ public class Incident {
      */
     @OneToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "location_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"incident", "village"})
     private Location location;
     
     /**

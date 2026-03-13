@@ -3,6 +3,8 @@ package com.emergency.service;
 import com.emergency.entity.Resource;
 import com.emergency.repository.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,6 +29,13 @@ public class ResourceService {
     public Resource getResourceById(Long id) {
         return resourceRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Resource not found with id: " + id));
+    }
+    
+    /**
+     * Get paginated resources
+     */
+    public Page<Resource> getPaginatedResources(Pageable pageable) {
+        return resourceRepository.findAll(pageable);
     }
     
     /**

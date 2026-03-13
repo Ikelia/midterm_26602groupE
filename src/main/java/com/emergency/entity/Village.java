@@ -1,6 +1,7 @@
 package com.emergency.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,7 +36,7 @@ public class Village {
      */
     @ManyToOne
     @JoinColumn(name = "cell_id", nullable = false)
-    @JsonIgnore
+    @JsonIgnoreProperties({"villages", "sector"})
     private Cell cell;
     
     /**
