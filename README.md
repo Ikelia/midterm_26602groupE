@@ -12,7 +12,7 @@ A Spring Boot backend system for managing emergency incidents, resources, and us
 
 ## Entity Relationship Diagram (ERD)
 
-### Tables (11 Total):
+### Tables (10 Total):
 
 1. **Province** (id, name, code)
 2. **District** (id, name, code, province_id)
@@ -83,7 +83,7 @@ Server runs on: http://localhost:8080
 ## Assessment Criteria Implementation
 
 ### 1. ERD with 5+ Tables (3 Marks) ✓
-**Tables**: 11 tables total (Province, District, Sector, Cell, Village, Location, User, Incident, Resource, Incident_Resource)
+**Tables**: 10 tables total (Province, District, Sector, Cell, Village, Location, User, Incident, Resource, Incident_Resource)
 **Relationships**: Complete hierarchical structure with proper foreign keys
 
 ### 2. Saving Location (2 Marks) ✓
