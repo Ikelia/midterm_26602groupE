@@ -41,4 +41,16 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * Pagination and Sorting support
      */
     Page<User> findAll(Pageable pageable);
+    
+    /**
+     * Fetch user with all location hierarchy eagerly loaded
+     */
+    @Query("SELECT u FROM User u " +
+           "JOIN FETCH u.village v " +
+           "JOIN FETCH v.cell c " +
+           "JOIN FETCH c.sector s " +
+           "JOIN FETCH s.district d " +
+           "JOIN FETCH d.province p " +
+           "WHERE u.id = :userId")
+    User findByIdWithFullHierarchy(@Param("userId") Long userId);
 }

@@ -84,4 +84,35 @@ public class UserController {
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getUserById(id));
     }
+    
+    /**
+     * Get user with full location hierarchy
+     * Example: GET /api/users/1/full-details
+     */
+    @GetMapping("/{id}/full-details")
+    public ResponseEntity<?> getUserWithFullDetails(@PathVariable Long id) {
+        User user = userService.getUserWithFullHierarchy(id);
+        
+        // Build response with full hierarchy
+        var response = new java.util.HashMap<String, Object>();
+        response.put("id", user.getId());
+        response.put("name", user.getName());
+        response.put("email", user.getEmail());
+        
+        var locationHierarchy = new java.util.HashMap<String, Object>();
+        locationHierarchy.put("village", user.getVillage().getName());
+        locationHierarchy.put("villageCode", user.getVillage().getCode());
+        locationHierarchy.put("cell", user.getVillage().getCell().getName());
+        locationHierarchy.put("cellCode", user.getVillage().getCell().getCode());
+        locationHierarchy.put("sector", user.getVillage().getCell().getSector().getName());
+        locationHierarchy.put("sectorCode", user.getVillage().getCell().getSector().getCode());
+        locationHierarchy.put("district", user.getVillage().getCell().getSector().getDistrict().getName());
+        locationHierarchy.put("districtCode", user.getVillage().getCell().getSector().getDistrict().getCode());
+        locationHierarchy.put("province", user.getVillage().getCell().getSector().getDistrict().getProvince().getName());
+        locationHierarchy.put("provinceCode", user.getVillage().getCell().getSector().getDistrict().getProvince().getCode());
+        
+        response.put("locationHierarchy", locationHierarchy);
+        
+        return ResponseEntity.ok(response);
+    }
 }

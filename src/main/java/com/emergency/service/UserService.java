@@ -102,4 +102,15 @@ public class UserService {
         User user = getUserById(id);
         userRepository.delete(user);
     }
+    
+    /**
+     * Get user with full location hierarchy
+     */
+    public User getUserWithFullHierarchy(Long id) {
+        User user = userRepository.findByIdWithFullHierarchy(id);
+        if (user == null) {
+            throw new RuntimeException("User not found with id: " + id);
+        }
+        return user;
+    }
 }
